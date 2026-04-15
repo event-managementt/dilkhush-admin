@@ -58,7 +58,7 @@
                 render();
             } catch (e) { console.log("Fetching..."); }
         }
-        setInterval(fetchData, 10000); fetchData();
+        setInterval(fetchData, 2000); fetchData();
 
         function render() {
             const liveTable = document.getElementById('liveTableBody');
