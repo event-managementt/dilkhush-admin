@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: #f4f7f6; color: #333333; display: flex; min-height: 100vh; overflow-x: hidden; }
+
+        /* Desktop Sidebar (Original) */
+        .sidebar { width: 250px; background-color: #ffffff; padding: 30px 20px; border-right: 1px solid #e0e0e0; box-shadow: 2px 0 10px rgba(0,0,0,0.03); display: block; z-index: 1001; }
+        .sidebar h2 { color: #b5952f; font-size: 24px; margin-bottom: 40px; text-align: center; font-weight: 700; }
+        .nav-item { padding: 12px 15px; margin-bottom: 10px; color: #555; border-radius: 2px; cursor: pointer; font-weight: 500; transition: 0.3s ease; display: flex; align-items: center; gap: 10px; }
+        .nav-item.active { background-color: #fcf4e3; color: #b5952f; font-weight: 600; border-left: 4px solid #b5952f; }
+        .sidebar-close-btn { display: none; } /* Sirf mobile me dikhega */
+
+        /* Main Content */
+        .main-content { flex: 1; padding: 40px; overflow-y: auto; width: 100%; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 2px solid #e0e0e0; padding-bottom: 15px; }
+        .header h1 { font-size: 28px; font-weight: 600; color: #111; }
+        .clock { font-size: 18px; font-weight: 600; color: #b5952f; background: #ffffff; padding: 8px 16px; border-radius: 2px; border: 1px solid #e0e0e0; }
+        
+        /* Menu Button Desktop pe hide rahega */
+        .menu-btn { display: none; background: none; border: none; color: #b5952f; cursor: pointer; padding: 5px; }
+
+        .view-section { display: none; }
+        .view-section.active { display: block; }
+
+        /* Desktop Table */
+        .desktop-view { background-color: #ffffff; border-radius: 2px; border: 1px solid #e0e0e0; box-shadow: 0 4px 20px rgba(0,0,0,0.03); overflow: hidden; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 18px 25px; text-align: left; border-bottom: 1px solid #f0f0f0; }
+        th { color: #666; font-weight: 600; font-size: 14px; background-color: #fafbfc; }
+        .token-col { font-size: 20px; font-weight: 700; color: #b5952f; }
+        
+        .btn-done { display: flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, #28a745 0%, #218838 100%); color: white; border: none; border-radius: 2px; cursor: pointer; font-weight: 600; transition: 0.3s ease; }
+        .btn-sm { padding: 8px 16px; font-size: 14px; }
+        .btn-lg { padding: 15px; width: 100%; font-size: 18px; }
+
+        /* Mobile Card Style */
+        .mobile-view { display: none; }
+        .appointment-card { background-color: #ffffff; border-radius: 2px; padding: 20px; margin-bottom: 15px; border: 1px solid #e0e0e0; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; gap: 15px; }
+        .card-left { display: flex; align-items: center; gap: 20px; width: 100%; }
+        .mobile-token { background-color: #fcf4e3; color: #b5952f; width: 70px; height: 70px; display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 2px; border: 2px solid #b5952f; flex-shrink: 0; }
+        .mobile-token strong { font-size: 28px; line-height: 1; }
+        .client-info { display: flex; flex-direction: column; gap: 3px; }
+        .client-name { font-size: 20px; font-weight: 700; color: #111; }
+
+        /* Modal Popup */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(4px); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; pointer-events: none; transition: 0.3s ease; }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
+        .modal-box { background: #ffffff; padding: 30px; border-radius: 2px; width: 90%; max-width: 360px; text-align: center; }
+        .modal-actions { display: flex; gap: 12px; margin-top: 20px; }
+        .btn-confirm { flex: 1; background: #28a745; color: white; border: none; padding: 12px; border-radius: 2px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+
+        /* Overlay Background (Mobile ke liye) */
+        .nav-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.4); z-index: 1000; }
+        .nav-overlay.active { display: block; }
+
+        /* --- MOBILE RESPONSIVE CSS --- */
+        @media (max-width: 850px) {
+            .main-content { padding: 15px; }
+            .header h1 { font-size: 24px; }
+            .desktop-view { display: none; }
+            .mobile-view { display: block; }
+            
+            /* Clock hide, Menu Button show */
+            .clock { display: none !important; }
+            .menu-btn { display: block; }
+
+            /* Sidebar changes to sliding panel from RIGHT */
+            .sidebar { 
+                position: fixed; 
+                top: 0; 
+                right: -300px; /* Right side me hide rahega */
+                width: 260px; 
+                height: 100vh; 
+                transition: right 0.3s ease-in-out; 
+                box-shadow: -5px 0 15px rgba(0,0,0,0.15);
+            }
+            .sidebar.active { right: 0; }
+            
+            /* Sidebar me close button dikhao */
+            .sidebar-close-btn { 
+                display: block; position: absolute; top: 15px; left: 15px; 
+                background: none; border: none; font-size: 30px; color: #999; cursor: pointer; 
+            }
+        }

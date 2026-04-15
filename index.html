@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DilKhush Salon - Admin Dashboard</title>
+    <link rel="shortcut icon" href="images/chetan2.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+    <div class="nav-overlay" id="navOverlay" onclick="toggleSidebar()"></div>
+
+    <div class="sidebar" id="navSidebar">
+        <button class="sidebar-close-btn" onclick="toggleSidebar()">×</button>
+        <h2>Salon Panel</h2>
+        <div class="nav-item active" onclick="switchTab('live')">Live Queue</div>
+        <div class="nav-item" onclick="switchTab('history')">History</div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1 id="pageTitle" style="font-weight: bold; color: darkslategray;">Live Queue</h1>
+            
+            <div class="clock" id="liveClock">00:00</div>
+            
+            <button class="menu-btn" onclick="toggleSidebar()">
+                <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <div id="liveSection" class="view-section active">
+            <div class="desktop-view">
+                <table>
+                    <thead><tr><th>Token</th><th>Client details</th><th>Service / Stylist</th><th>Time</th><th>Action</th></tr></thead>
+                    <tbody id="liveTableBody"></tbody>
+                </table>
+            </div>
+            <div class="mobile-view" id="liveMobileBody"></div>
+        </div>
+
+        <div id="historySection" class="view-section">
+            <div class="desktop-view">
+                <table>
+                    <thead><tr><th>Token</th><th>Client details</th><th>Service / Stylist</th><th>Time</th><th>Status</th></tr></thead>
+                    <tbody id="historyTableBody"></tbody>
+                </table>
+            </div>
+            <div class="mobile-view" id="historyMobileBody"></div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal-box">
+            <div style="font-size: 20px; font-weight: 700; margin-bottom: 10px;">Confirm Done?</div>
+            <p style="color: #666; font-size: 14px; margin-bottom: 20px;">Move this to history?</p>
+            <div class="modal-actions">
+                <button onclick="closeModal()" style="flex:1; padding:12px; cursor:pointer; border-radius:2px; border:1px solid #ddd;">Cancel</button>
+                <button class="btn-confirm" onclick="processDone()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:18px;height:18px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
